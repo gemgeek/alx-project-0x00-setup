@@ -1,31 +1,12 @@
 import { ButtonProps } from "@/interfaces";
 import React from "react";
 
-const Button: React.FC<ButtonProps> = ({
-  title,
-  size = 'md', 
-  shape = 'md'  
-}) => {
+const Button: React.FC<ButtonProps> = ({ title, styles }) => {
+  // We can still have some base styles that every button shares
+  const baseStyles = "text-white font-semibold transition-colors duration-300 bg-blue-500 hover:bg-blue-700 px-6 py-3";
 
-    // Base styles for the button
-  const baseStyles = "text-white font-semibold transition-colors duration-300 bg-blue-500 hover:bg-blue-700";
-
-    // Define styles for different sizes
-  const sizeStyles = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-6 py-3 text-base",
-    lg: "px-8 py-4 text-lg",
-  };
-
-  // Define styles for different shapes
-  const shapeStyles = {
-    sm: "rounded-sm",
-    md: "rounded-md",
-    full: "rounded-full",
-  };
-
-  // Combine all the styles together
-  const combinedStyles = `${baseStyles} ${sizeStyles[size]} ${shapeStyles[shape]}`;
+  // We combine the base styles with the custom styles passed in via props
+  const combinedStyles = `${baseStyles} ${styles}`;
 
   return (
     <button className={combinedStyles}>
